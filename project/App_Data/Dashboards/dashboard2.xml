@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Grid Parc &amp; PC" />
+  <DataSources>
+    <SqlDataSource Name="Pcs" ComponentName="sqlDataSource1">
+      <Connection Name="Connection Dashboard" FromAppConfig="true" />
+      <Query Type="SelectQuery" Name="Pcs">
+        <Tables>
+          <Table Name="Pcs" />
+        </Tables>
+        <Columns>
+          <Column Table="Pcs" Name="AD" />
+          <Column Table="Pcs" Name="IP" />
+          <Column Table="Pcs" Name="Adress_Mac" />
+          <Column Table="Pcs" Name="Name" />
+          <Column Table="Pcs" Name="ParcID" />
+        </Columns>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+    <SqlDataSource Name="Parcs" ComponentName="sqlDataSource2">
+      <Connection Name="Connection Dashboard" FromAppConfig="true" />
+      <Query Type="SelectQuery" Name="Parcs">
+        <Tables>
+          <Table Name="Parcs" />
+        </Tables>
+        <Columns>
+          <Column Table="Parcs" Name="Address" />
+          <Column Table="Parcs" Name="Fax" />
+          <Column Table="Parcs" Name="Tel" />
+          <Column Table="Parcs" Name="Name" />
+        </Columns>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Grid 1" DataSource="sqlDataSource1" DataMember="Pcs">
+      <DataItems>
+        <Dimension DataMember="Name" DefaultId="DataItem0" />
+        <Dimension DataMember="IP" DefaultId="DataItem1" />
+        <Dimension DataMember="Adress_Mac" DefaultId="DataItem2" />
+        <Dimension DataMember="AD" DefaultId="DataItem3" />
+        <Measure DataMember="ParcID" DefaultId="DataItem4" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+        <GridMeasureColumn>
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem2" Name="Grid 2" DataSource="sqlDataSource2" DataMember="Parcs">
+      <DataItems>
+        <Dimension DataMember="Name" DefaultId="DataItem0" />
+        <Dimension DataMember="Address" DefaultId="DataItem1" />
+        <Dimension DataMember="Fax" DefaultId="DataItem2" />
+        <Dimension DataMember="Tel" DefaultId="DataItem3" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem DashboardItem="gridDashboardItem1" />
+      <LayoutItem DashboardItem="gridDashboardItem2" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

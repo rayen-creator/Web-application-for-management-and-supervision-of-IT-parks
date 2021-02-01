@@ -1,0 +1,100 @@
+﻿@model IEnumerable<project.Models.User>
+
+@{
+    ViewBag.Title = "GetAllUsers";
+}
+
+<h2>GetAllUsers <a asp-area="" asp-controller="AD" asp-action="Index"><i class="fa fa-times fa-lag" aria-hidden="true" title="Back"></i></a></h2>
+
+<br />
+
+<form>
+    <div class="form-group">
+        <label for="SearchInput" class="col-sm-2 col-form-label">Search for User</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="SearchInput"
+                   onkeyup="myFunction()" placeholder="Enter User">
+        </div>
+    </div>
+</form>
+
+<br />
+<br />
+@Html.Raw(TempData["msg"])
+
+<table class="table table-bordered table-striped" id="tblUsers">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DisplayName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Samaccountname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+
+        </th>
+        <th> The new password : P@ssw0rd </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisplayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Samaccountname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+
+            </td>
+            <td>
+                <i class="fa fa-retweet" aria-hidden="true"></i>
+                @Html.ActionLink("Reset Password", "ResetPassword", new { Samaccountname = item.Samaccountname })
+
+
+
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                @Html.ActionLink("DeleteUser", "DeleteUser", new { Samaccountname = item.Samaccountname }, new { onclick = "confirmDelete('@User.Id', true);" })
+
+            </td>
+
+
+        </tr>
+    }
+</table>
+<div style="text-align:center">
+    <a asp-area="" asp-controller="AD" asp-action="ChangePasswd" class="btn btn-info ">
+        <i class="fa fa-paint-brush" aria-hidden="true"></i>
+        Change User Password
+    </a>
+</div>
+
+@*@Html.ActionLink("ResetPasswordWithfield", "ResetPasswordWithfield", new { Samaccountname = item.Samaccountname, item.NewPassword })*@
+
+@section scripts
+    {      @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("SearchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("tblUsers");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+}

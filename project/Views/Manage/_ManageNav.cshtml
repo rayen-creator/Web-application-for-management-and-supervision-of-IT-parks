@@ -1,0 +1,20 @@
+﻿@using project.Views.Manage
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+
+<ul class="nav nav-pills nav-stacked">
+    <li><a asp-controller="Manage" asp-action="ChangePassword" class="text-info"><i class="fas fa-lock fa-lg"></i> Change Password</a></li>
+    <li><a asp-area="" asp-controller="Administration" asp-action="ListUsers" class="text-info"><i class="fas fa-address-card fa-lg"></i> List All User</a></li>
+    <li><a asp-area="" asp-controller="Administration" asp-action="ListRoles" class="text-info"> <i class="far fa-clipboard fa-lg"></i>  Add or Edit Role</a></li>
+    <li><a asp-area="" asp-controller="AD" asp-action="Index" class="text-info"><i class="fas fa-ad fa-lg"></i> Active Directory </a></li>
+   
+    @if (hasExternalLogins)
+    {
+
+    }
+
+</ul>
+

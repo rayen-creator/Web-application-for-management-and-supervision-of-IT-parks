@@ -1,0 +1,6 @@
+@using Microsoft.AspNetCore.Identity
+@using project
+@using project.Models
+@using project.Models.AccountViewModels
+@using project.Models.ManageViewModels
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

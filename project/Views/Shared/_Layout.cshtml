@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - project</title>
+    <link rel="shortcut icon" href="~/favicon.ico" />
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    @*<link href="~/css/bootstrapRayen.css" rel="stylesheet" />*@
+
+    <style>
+        body{
+            padding-bottom:0;
+
+        }
+        .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: .25rem
+        }
+
+            .card > hr {
+                margin-right: 0;
+                margin-left: 0
+            }
+
+            .card > .list-group:first-child .list-group-item:first-child {
+                border-top-left-radius: .25rem;
+                border-top-right-radius: .25rem
+            }
+
+            .card > .list-group:last-child .list-group-item:last-child {
+                border-bottom-right-radius: .25rem;
+                border-bottom-left-radius: .25rem
+            }
+
+        .card-body {
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            min-height: 1px;
+            padding: 1.25rem
+        }
+
+        .card-title {
+            margin-bottom: .75rem
+        }
+
+        .card-subtitle {
+            margin-top: -.375rem;
+            margin-bottom: 0
+        }
+
+        .card-text:last-child {
+            margin-bottom: 0
+        }
+
+        .card-link:hover {
+            text-decoration: none
+        }
+
+        .card-link + .card-link {
+            margin-left: 1.25rem
+        }
+
+        .card-header {
+            padding: .75rem 1.25rem;
+            margin-bottom: 0;
+            background-color: rgba(0,0,0,.03);
+            border-bottom: 1px solid rgba(0,0,0,.125)
+        }
+
+            .card-header:first-child {
+                border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0
+            }
+
+            .card-header + .list-group .list-group-item:first-child {
+                border-top: 0
+            }
+
+        .card-footer {
+            padding: .75rem 1.25rem;
+            background-color: rgba(0,0,0,.03);
+            border-top: 1px solid rgba(0,0,0,.125)
+        }
+
+            .card-footer:last-child {
+                border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px)
+            }
+
+        .card-header-tabs {
+            margin-right: -.625rem;
+            margin-bottom: -.75rem;
+            margin-left: -.625rem;
+            border-bottom: 0
+        }
+        .mynav_navbar {
+            overflow: hidden;
+            background-color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+            .mynav_navbar a {
+                float: left;
+                font-size: 15px;
+                color: #9d9d9d;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+
+        .mynav_dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .mynav_dropdown .mynav_dropbtn {
+                font-size: 15px;
+                border: none;
+                outline: none;
+                color: #9d9d9d;
+                padding: 14px 16px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+            .mynav_navbar a:hover, .mynav_dropdown:hover .mynav_dropbtn {
+                color: white;
+            }
+
+        .mynav_dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .mynav_dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .mynav_dropdown-content a:hover {
+                    background-color: #ddd;
+                    text-decoration: none;
+                }
+
+        .mynav_dropdown:hover .mynav_dropdown-content {
+            display: block;
+        }
+
+        a {
+            color: #9d9d9d;
+            text-decoration: none;
+        }
+
+        /****************/
+
+        hr.style18 {
+            height: 30px;
+            border-style: solid;
+            border-color: #8c8b8b;
+            border-width: 1px 0 0 0;
+            border-radius: 20px;
+            width: 50%;
+        }
+
+            hr.style18:before {
+                width: 50%;
+                content: "";
+                height: 30px;
+                margin-top: -31px;
+                border-style: solid;
+                border-color: #8c8b8b;
+                border-width: 0 0 1px 0;
+                border-radius: 20px;
+            }
+       
+
+        /************************/
+
+        .site-footer {
+            margin-top: 400px;
+            margin-bottom: 0;
+            background-color: #26272b;
+            padding: 45px 0 20px;
+            font-size: 15px;
+            line-height: 24px;
+            color: #737373;
+        }
+
+            .site-footer hr {
+                border-top-color: #bbb;
+                opacity: 0.5
+            }
+
+                .site-footer hr.small {
+                    margin: 20px 0
+                }
+
+            .site-footer h6 {
+                color: #fff;
+                font-size: 16px;
+                text-transform: uppercase;
+                margin-top: 5px;
+                letter-spacing: 2px
+            }
+
+            .site-footer a {
+                color: #737373;
+            }
+
+                .site-footer a:hover {
+                    color: #3366cc;
+                    text-decoration: none;
+                }
+
+        .footer-links {
+            padding-left: 0;
+            list-style: none
+        }
+
+            .footer-links li {
+                display: block
+            }
+
+            .footer-links a {
+                color: #737373
+            }
+
+                .footer-links a:active, .footer-links a:focus, .footer-links a:hover {
+                    color: #3366cc;
+                    text-decoration: none;
+                }
+
+            .footer-links.inline li {
+                display: inline-block
+            }
+
+        .site-footer .social-icons {
+            text-align: right
+        }
+
+            .site-footer .social-icons a {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                margin-left: 6px;
+                margin-right: 0;
+                border-radius: 100%;
+                background-color: #33353d
+            }
+
+        .copyright-text {
+            margin: 0
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index" title="Home"> <span class="glyphicon glyphicon-home"></span> </a></li>
+                    @if ((User.Identity.IsAuthenticated) && (User.IsInRole("Admin")) || (User.IsInRole("nomodifier")))
+                    {
+                        <li>
+                            <div class="mynav_dropdown">
+                                <button class="mynav_dropbtn">Mange DataBase</button>
+                                <div class="mynav_dropdown-content">
+                                    <a asp-area="" asp-controller="Parc" asp-action="Index">AddOrEdit your park</a>
+                                    <a asp-area="" asp-controller="Pcs" asp-action="Index">AddOrEdit your devices </a>
+                                    <a asp-area="" asp-controller="Apps" asp-action="Index">AddOrEdit your Apps </a>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li> <a asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
+
+                    }
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+
+                </ul>
+                @await Html.PartialAsync("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <!-- Site footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <img src="~/logo-white.png" width="40%" height="70px" /> 
+                    <p class="text-justify"> This Application Web was created by Students , the purpose of this project is to make easy for enginer to controle every thing in the company with a database full of users and their role there is also part for every device in the company , It also provide dashboard following every process in the company devices and even more.</p>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a> </li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>More Info</h6>
+
+                    <div class="footer-links">
+                        <div style="display:flex;">
+                            <div> <i class="glyphicon glyphicon-pushpin fa-2x"></i></div>
+                            <div style="margin-left:20px;"> 38, rue KABOUL <br />Ariana - Tunisie 2037</div>
+                        </div><br>
+                        <div style="display:flex">
+                            <div> <i class="glyphicon glyphicon-earphone fa-2x"></i> </div>
+                            <div style="margin-left:20px">+216 71 82 77 45 <br>info@tsi.com.tn</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div >
+                    <p style="text-align:center">
+                        Copyright ©
+                        <script type="text/javascript">document.write("2020 - " + new Date().getFullYear());</script> All rights reserved
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   
+
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+}
+<style>
+    h2,p{
+        text-align:center;
+    }
+    img{
+        width:100%;
+        height:500px;
+    }
+</style>
+<header>
+    <h2 class="text-danger">@ViewData["Title"]</h2>
+    <p class="text-danger">You do not have access to this resource.</p>
+    <img src="~/images/401-Unauthorized-t.jpg" alt="acces denied">
+</header>

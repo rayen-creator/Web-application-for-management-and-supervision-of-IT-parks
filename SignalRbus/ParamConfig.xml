@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ParamConnexion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Source>DESKTOP-DDGJARM</Source>
+  <Catalog>Parc_informatique</Catalog>
+  <Security>SQL</Security>
+  <User>tsi</User>
+  <Password>Pfe@2020</Password> 
+</ParamConnexion>

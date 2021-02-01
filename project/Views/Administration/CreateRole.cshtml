@@ -1,0 +1,53 @@
+﻿@model CreateRoleViewModel
+
+@{
+    ViewBag.Title = "Create New Role";
+}
+
+<style>
+    .vertical {
+        margin-top: 70px;
+        border-left: 1px solid #EEEEEE;
+        height: 200px;
+        position: absolute;
+        left: 45%;
+    }
+
+    img {
+        margin-top: 40px;
+        height: auto;
+        width: 80%;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-6">
+        <img src="~/images/undraw_detailed_information_3sp6.svg" alt="Los Angeles">
+
+    </div>
+    <!-- vertical line -->
+    <div class="vertical"></div>
+    <div class="col-md-4">
+        <h2>@ViewData["Title"]</h2>
+
+        <form asp-action="CreateRole" method="post" class="mt-3">
+            <div asp-validation-summary="All" class="text-danger">
+            </div>
+
+            <label asp-for="RoleName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="RoleName" class="form-control" placeholder="Name">
+                <span asp-validation-for="RoleName" class="text-danger"></span><br />
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:auto">
+                <i class="far fa-plus-square fa-lg"></i> Create Role
+            </button>
+            <a class="btn btn-info" style="width:auto" asp-action="ListRoles" asp-controller="administration"><i class="fas fa-redo fa-lg"></i> Back</a>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

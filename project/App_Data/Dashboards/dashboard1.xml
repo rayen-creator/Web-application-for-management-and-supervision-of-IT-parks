@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Monitoring Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="InfoSystems" ComponentName="sqlDataSource1">
+      <Connection Name="Connection Dashboard" FromAppConfig="true" />
+      <Query Type="SelectQuery" Name="InfoSystems">
+        <Tables>
+          <Table Name="InfoSystems" />
+        </Tables>
+        <Columns>
+          <Column Table="InfoSystems" Name="CPU_Logical_Core" />
+          <Column Table="InfoSystems" Name="CPU_Physical_Core" />
+          <Column Table="InfoSystems" Name="ComputerName" Alias="InfoSystems_ComputerName" />
+          <Column Table="InfoSystems" Name="OS_Architecture" />
+          <Column Table="InfoSystems" Name="OsSystem" />
+          <Column Table="InfoSystems" Name="OS_Version" />
+          <Column Table="InfoSystems" Name="PcName" />
+        </Columns>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+    <SqlDataSource Name="Performances" ComponentName="sqlDataSource2">
+      <Connection Name="Connection Dashboard" FromAppConfig="true" />
+      <Query Type="SelectQuery" Name="Performances">
+        <Tables>
+          <Table Name="Performances" />
+        </Tables>
+        <Columns>
+          <Column Table="Performances" Name="CPU" />
+          <Column Table="Performances" Name="RAM" />
+          <Column Table="Performances" Name="System_Up_Time" />
+          <Column Table="Performances" Name="ComputerName" />
+          <Column Table="Performances" Name="DateCreation" />
+        </Columns>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+    <SqlDataSource Name="InfoNetworks" ComponentName="sqlDataSource3">
+      <Connection Name="Connection Dashboard" FromAppConfig="true" />
+      <Query Type="SelectQuery" Name="InfoNetworks">
+        <Tables>
+          <Table Name="InfoNetworks" />
+        </Tables>
+        <Columns>
+          <Column Table="InfoNetworks" Name="IP_Adress" />
+          <Column Table="InfoNetworks" Name="MAC_Adress" />
+          <Column Table="InfoNetworks" Name="ComputerName" />
+        </Columns>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Info System" DataSource="sqlDataSource1" DataMember="InfoSystems">
+      <DataItems>
+        <Dimension DataMember="InfoSystems_ComputerName" DefaultId="DataItem0" />
+        <Dimension DataMember="OsSystem" DefaultId="DataItem1" />
+        <Dimension DataMember="OS_Architecture" DefaultId="DataItem4" />
+        <Dimension DataMember="OS_Version" DefaultId="DataItem5" />
+        <Dimension DataMember="CPU_Physical_Core" DefaultId="DataItem2" />
+        <Dimension DataMember="CPU_Logical_Core" DefaultId="DataItem3" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem4" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem5" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem2" Name="Info Network" DataSource="sqlDataSource3" DataMember="InfoNetworks">
+      <DataItems>
+        <Dimension DataMember="ComputerName" DefaultId="DataItem0" />
+        <Dimension DataMember="IP_Adress" DefaultId="DataItem1" />
+        <Dimension DataMember="MAC_Adress" DefaultId="DataItem2" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Pie ComponentName="pieDashboardItem1" Name="Performance" DataSource="sqlDataSource2" DataMember="Performances">
+      <DataItems>
+        <Measure DataMember="CPU" DefaultId="DataItem0" />
+        <Measure DataMember="RAM" DefaultId="DataItem1" />
+        <Measure DataMember="System_Up_Time" DefaultId="DataItem2" />
+        <Dimension DataMember="ComputerName" DefaultId="DataItem3" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem3" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem2" />
+      </Values>
+    </Pie>
+  </Items>
+  <ColorScheme>
+    <Entry DataSource="sqlDataSource2" DataMember="Performances" Color="-3388597">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="ComputerName" />
+          <Value Type="System.String" Value="DESKTOP-63D7TVN" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="sqlDataSource2" DataMember="Performances" Color="-11503437">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="ComputerName" />
+          <Value Type="System.String" Value="DESKTOP-DDGJARM" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+  </ColorScheme>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutGroup Orientation="Vertical">
+        <LayoutItem DashboardItem="pieDashboardItem1" Weight="1.1594896331738436" />
+        <LayoutGroup Weight="1.1594896331738436">
+          <LayoutItem DashboardItem="gridDashboardItem1" Weight="1.2930103640241597" />
+          <LayoutItem DashboardItem="gridDashboardItem2" Weight="0.7069896359758403" />
+        </LayoutGroup>
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
